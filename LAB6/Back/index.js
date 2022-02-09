@@ -1,27 +1,30 @@
-const express = require("express");
-    const PORT = process.env.PORT || 3010;
-    const app = express();
+const PORT = 3010;
+const HOST = 'localhost';
 
-    app.listen(PORT, () => {
-    console.log('Server listening on ${PORT}');
-    });
+const express = require('express');
 
-    const session = require('express-session');
+const app = express();
+
+const session = require('express-session');
 
     app.use(
         session({
             secret: 'secret string',
-            reasve: false,
-            saveUninitialized: false,
-            cookie: {/* can add cookie related info here */}
+            resave: false,
+            saveUnitialized: false,
+            cookies :{}
         })
-    )
+    );
 
-    app.get('/', function(req,res){
-        if(!req.session.pageCountByCurrentUserOrAnyNameYouWant)
-            req.session.pageCountByCurrentUserOrAnyNameYouWant = 0;
-        req.session.pageCountByCurrentUserOrAnyNameYouWant++;
+    app.get('/api/', function(req, res) {
+        if(!req.session.pageCountcurrent)
+            req.session.pageCountcurrent = 0;
+        req.session.pageCountcurrent++;
         res.send({
-            pageCount: req.session.pageCountByCurrentUserOrAnyNameYouWant
+            pageCount: req.session.pageCountcurrent
         });
     });
+
+
+app.listen(PORT, HOST);
+console.log(`Running on http://${HOST}:${PORT}/api/`);
