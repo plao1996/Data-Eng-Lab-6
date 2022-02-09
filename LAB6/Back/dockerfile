@@ -1,16 +1,18 @@
-FROM node:alpine
+FROM node:16
 
-WORKDIR /usr/src/app
+WORKDIR /Back
 
-COPY package*.json ./
+COPY Back/package.json ./
+
+COPY Back/package-lock.json ./
 
 RUN npm install 
 
-COPY . .
+COPY Back/. .
 
 EXPOSE 3010
 
-CMD [ "node", "index.js" ]
+CMD [ "npm", "start", "back" ]
 
 
 

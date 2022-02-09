@@ -1,14 +1,18 @@
 FROM node:alpine
 
-WORKDIR /usr/src/app
+WORKDIR /Front
 
-COPY package*.json ./
+ENV PATH /app/node_modules/.bin:$PATH
 
-RUN npm install 
+COPY Front/package.json ./
 
-COPY . .
+COPY Front/package-lock.json ./
 
-EXPOSE 3010
+RUN npm i
 
-CMD [ "node", "index.js" ]
+COPY Front/. .
+
+EXPOSE 3000
+
+CMD [ "npm", "start" ]
 

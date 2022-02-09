@@ -1,13 +1,26 @@
-version: "1"
-services:
-  back_end:
-    build: Back/.
-    container_name: backend
-    ports:
-      - "3010:3010"
+version: '3'
 
-  front_end:
-    build: Front/.
-    container_name: frontend
+
+services:
+
+  back_end:
+    container_name: server
+    build:
+      context: .
+      dockerfile: Back/Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
     ports:
-      - "3000:3000"  
+      - 3010:3010
+
+  client:
+    container_name: client
+    build:
+      context: .
+      dockerfile: Front/Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - 3000:3000
