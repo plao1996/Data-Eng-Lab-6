@@ -1,13 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('Compile') {
+        stage('Docker Image Build') {
             steps {
-                echo 'Compile the source code'
-                dir('.'){
-                bat 'docker-compose up -d --build'
-                bat 'docker-compose up'
-                }
+                bat 'docker-compose up --build -d'
             }
         }
     }
