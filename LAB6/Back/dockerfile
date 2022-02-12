@@ -12,7 +12,7 @@ COPY Back/. .
 
 EXPOSE 3010
 
-CMD [ "npm", "start", "back" ]
+CMD [ "npm", "start"]
 
 
 

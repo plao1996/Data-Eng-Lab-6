@@ -2,7 +2,7 @@ const PORT = 3010;
 const HOST = 'localhost';
 
 const express = require('express');
-
+const cors = require('cors')
 const app = express();
 
 const session = require('express-session');
@@ -15,6 +15,8 @@ const session = require('express-session');
             cookies :{}
         })
     );
+
+    app.use(cors());
 
     app.get('/api/', function(req, res) {
         if(!req.session.pageCountcurrent)

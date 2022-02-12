@@ -4,7 +4,7 @@ export const Fetcher = ()=> {
     const [initialState, setIntialState] = useState([])
 
     useEffect(() => {
-        fetch('/api/').then(res => {
+        fetch('http://localhost:3010/api/').then(res => {
             if (res.ok) {
                 return res.json()
             }
@@ -12,5 +12,5 @@ export const Fetcher = ()=> {
     }, [])
 
     console.log(initialState)
-    return (<div>Page Refresh Count {initialState.pageCount}</div>)
+    return (<div>Page Refresh Count : {initialState.pageCount}</div>)
 }
