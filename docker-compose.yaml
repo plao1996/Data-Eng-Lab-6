@@ -4,7 +4,7 @@ version: '3'
 services:
 
   back_end:
-    container_name: server
+    container_name: Back
     build:
       context: .
       dockerfile: Back/dockerfile
@@ -15,7 +15,7 @@ services:
       - 3010:3010
 
   client:
-    container_name: client
+    container_name: Front
     build:
       context: .
       dockerfile: Front/dockerfile
